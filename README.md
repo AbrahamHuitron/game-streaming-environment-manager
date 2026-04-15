@@ -1,3 +1,8 @@
+Ah, I see exactly what happened! My apologies. The formatting broke because I put code blocks *inside* of a master code block (the triple backticks for the `bash` and `powershell` commands). That caused the chat interface to get confused and prematurely end the text right at Step 1. 
+
+Here is the full, raw Markdown. I have enclosed it using a four-backtick block so it will render all the way through without cutting off. You can copy everything inside this block:
+
+````markdown
 # 🎮 Game Streaming Environment Manager
 
 [![PowerShell](https://img.shields.io/badge/PowerShell-5.1%2B-blue.svg)](https://docs.microsoft.com/en-us/powershell/)
@@ -6,9 +11,6 @@
 An automated PowerShell utility designed to seamlessly transition a standard productivity desktop into an optimized, low-latency local game-streaming environment using **Sunshine** and **Playnite**.
 
 Whether you're streaming to a handheld device or another room, this script ensures maximum system resources are dedicated to your games and provides a clean return to your regular desktop setup when you're done.
-
-> **💡 Tip:** Add a GIF or screenshot here showing the script in action or your Playnite interface!
-> `![Demo](link-to-your-image-or-gif.gif)`
 
 ## 📑 Table of Contents
 - [Features](#-features)
@@ -44,3 +46,53 @@ Whether you're streaming to a handheld device or another room, this script ensur
 1. Clone this repository or download the source code:
    ```bash
    git clone [https://github.com/AbrahamHuitron/game-streaming-environment-manager.git](https://github.com/AbrahamHuitron/game-streaming-environment-manager.git)
+   ```
+2. Place the `game_streaming.ps1` script in a convenient directory (e.g., `C:\Scripts\`).
+3. Ensure your system allows local script execution. You may need to run this command in PowerShell as an Administrator once:
+   ```powershell
+   Set-ExecutionPolicy RemoteSigned -Scope CurrentUser
+   ```
+
+## 🎮 Usage
+
+Execute the script via PowerShell, providing the mandatory `-Mode` parameter. You can integrate these commands directly into Sunshine's "Command Preparations" (Do/Undo commands) for fully automated transitions.
+
+**1. Launch the Streaming Environment**
+```powershell
+.\game_streaming.ps1 -Mode Start
+```
+
+**2. Launch with Playnite (Fullscreen)**
+Include the `-UsePlaynite` switch to automatically manage the Playnite desktop-to-fullscreen transition.
+```powershell
+.\game_streaming.ps1 -Mode Start -UsePlaynite
+```
+
+**3. Restore the Productivity Environment**
+```powershell
+.\game_streaming.ps1 -Mode Stop -UsePlaynite
+```
+
+## ⚙️ Configuration
+
+You can easily customize which applications are managed by editing the arrays at the top of the `game_streaming.ps1` file:
+
+* **`$appsToStop`**: The exact process names to terminate when starting a stream. 
+  *(Default: Chrome, Discord, EarTrumpet, Microsoft.CmdPal.UI, PowerToys, Twinkle Tray)*
+* **`$appsToRestart`**: The names of the applications to relaunch when ending a stream. The script uses `Get-StartApps` to find and launch them dynamically.
+
+*Note: Discord is hardcoded to launch with `--start-minimized` during the stop sequence to prevent the UI from popping up over your desktop.*
+
+## 📝 Troubleshooting & Logs
+
+This script operates entirely silently without GUI popups. 
+* It features dynamic path detection to ensure logs are saved correctly, even if your Desktop is managed by OneDrive.
+* If an application fails to start or stop, the script generates a timestamped text file directly on your Desktop (e.g., `Start_Streaming_Error_Log_2026-04-14_1830.txt`).
+
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+---
+**Created by:** Abraham Huitron  
+**Version:** 1.0
