@@ -1,8 +1,3 @@
-Ah, I see exactly what happened! My apologies. The formatting broke because I put code blocks *inside* of a master code block (the triple backticks for the `bash` and `powershell` commands). That caused the chat interface to get confused and prematurely end the text right at Step 1. 
-
-Here is the full, raw Markdown. I have enclosed it using a four-backtick block so it will render all the way through without cutting off. You can copy everything inside this block:
-
-````markdown
 # 🎮 Game Streaming Environment Manager
 
 [![PowerShell](https://img.shields.io/badge/PowerShell-5.1%2B-blue.svg)](https://docs.microsoft.com/en-us/powershell/)
