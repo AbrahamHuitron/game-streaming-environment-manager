@@ -2,8 +2,8 @@
 # Created By: Abraham Huitron
 # Created Date: 04/14/2026
 # Updated Date: 04/14/2026
-# Version: 1.0
-# Update Log:
+# Version: 1.1
+# Update Log: Added toggle flag for desktop error logging
 
 <#
 .SYNOPSIS
@@ -13,7 +13,7 @@
     Automates transitions between productivity and gaming/streaming environments.
     - 'Start': Minimizes UI, boosts Sunshine priority, stops background apps, and launches Playnite.
     - 'Stop': Resets priority, restores background apps, and resets Playnite to background.
-    Logging: Saves errors to a timestamped .txt file on the Desktop.
+    Logging: Saves errors to a timestamped .txt file on the Desktop when the -EnableLogging flag is used.
 #>
 
 param (
@@ -23,7 +23,8 @@ param (
 
     # --- TOGGLE FLAGS ---
     # [switch] is used to prevent the "Cannot convert System.String to Boolean" error.
-    [switch]$UsePlaynite
+    [switch]$UsePlaynite,
+    [switch]$EnableLogging
 )
 
 # --- CONFIGURATION ---
@@ -137,7 +138,7 @@ if ($Mode -eq 'Start') {
 }
 
 # --- LOGGING ONLY (GUI POPUPS REMOVED) ---
-if ($script:failedApps.Count -gt 0) {
+if ($EnableLogging -and ($script:failedApps.Count -gt 0)) {
     try {
         $prefix = if ($Mode -eq 'Start') { "Start_" } else { "End_" }
         $logFileName = "${prefix}Streaming_Error_Log_${sessionTime}.txt"
