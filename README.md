@@ -50,22 +50,25 @@ Whether you're streaming to a handheld device or another room, this script ensur
 
 ## 🎮 Usage
 
-Execute the script via PowerShell, providing the mandatory `-Mode` parameter. You can integrate these commands directly into Sunshine's "Command Preparations" (Do/Undo commands) for fully automated transitions.
+Execute the script via PowerShell, providing the mandatory `-Mode` parameter. You can integrate these commands directly into Sunshine's "Command Preparations" (Do/Undo commands) for fully automated transitions. **The Do/Undo commands must be elevated due to the fact that PowerShell needs admin permissions to change Sunshine/Apollo's Process Priority.**
 
-**1. Launch the Streaming Environment**
+**1. Launch the Streaming Environment** 
+
+Here you adjust the parameters you'd like to use or NOT use before the stream begins.
+
 ```powershell
 .\game_streaming.ps1 -Mode Start
 ```
 
-**2. Launch with Playnite (Fullscreen)**
-Include the `-UsePlaynite` switch to automatically manage the Playnite desktop-to-fullscreen transition.
+**2. Launch with Playnite (Fullscreen) w/logging**
+Include the `-UsePlaynite` switch to automatically manage the Playnite desktop-to-fullscreen transition. Additionally you can also use `-EnableLogging` to ensure a log file of any programs that fail to start/stop are saved to your desktop.
 ```powershell
-.\game_streaming.ps1 -Mode Start -UsePlaynite
+.\game_streaming.ps1 -Mode Start -UsePlaynite -EnableLogging
 ```
 
 **3. Restore the Productivity Environment**
 ```powershell
-.\game_streaming.ps1 -Mode Stop -UsePlaynite
+.\game_streaming.ps1 -Mode Stop -UsePlaynite -EnableLogging
 ```
 
 ## ⚙️ Configuration
