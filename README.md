@@ -65,12 +65,14 @@ Here you adjust the parameters you'd like to use or NOT use before the stream be
 **2. Launch with Playnite (Fullscreen) w/logging**
 Include the `-UsePlaynite` switch to automatically manage the Playnite desktop-to-fullscreen transition. Additionally, you can also use `-EnableLogging` to ensure a log file of any programs that fail to start/stop are saved to your desktop.
 ```powershell
-powershell.exe -ExecutionPolicy Bypass -File "C:\{directory_path}\game_streaming.ps1" -Mode Start -UsePlaynite -EnableLogging
+powershell.exe -ExecutionPolicy Bypass -File 
+"C:\{directory_path}\game_streaming.ps1" -Mode Start -UsePlaynite -EnableLogging
 ```
 
 **3. Restore the Productivity Environment**
 ```powershell
-powershell.exe -ExecutionPolicy Bypass -File "C:\{directory_path}\game_streaming.ps1" -Mode Stop -UsePlaynite -EnableLogging
+powershell.exe -ExecutionPolicy Bypass -File 
+"C:\{directory_path}\game_streaming.ps1" -Mode Stop -UsePlaynite -EnableLogging
 ```
 
 ## ⚙️ Configuration
